@@ -29,7 +29,7 @@ export const POST = async (request) => {
         const response = NextResponse.json(
             {
                 message: "Login successful",
-                user,
+                email,
                 success: true,
             },
             { status: 200 }
@@ -42,6 +42,6 @@ export const POST = async (request) => {
 
         return response;
     } catch (error) {
-        return getResponseMessage(`Login failed: ${error.message}`, false, 404)
+        return getResponseMessage(`Login failed: ${error.message}`, false, 404);
     }
 };

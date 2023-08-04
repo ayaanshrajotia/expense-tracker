@@ -50,9 +50,13 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    categories: {
-        type: Array,
-    },
+    categories: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "category",
+            default: [],
+        },
+    ],
 });
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);

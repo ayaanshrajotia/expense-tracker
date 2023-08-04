@@ -19,12 +19,12 @@ const categorySchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
     },
     transactions: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Transaction",
+            ref: "transaction",
             default: [],
         },
     ],
@@ -34,6 +34,6 @@ const categorySchema = new mongoose.Schema({
     },
 });
 
-const Category = mongoose.model("Category", categorySchema);
+const Category = mongoose.model("category", categorySchema);
 
 export default Category;
