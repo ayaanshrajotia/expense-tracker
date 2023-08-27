@@ -1,8 +1,11 @@
-import { getResponseMessage } from "@/helper/response";
-import User from "@/models/user";
+import { getResponseMessage } from "../../../../helper/response";
+import User from "../../../../models/user";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import { connectDB } from "../../../../helper/connectDB";
+
+connectDB();
 
 export const POST = async (request) => {
     const { email, password } = await request.json();
@@ -29,7 +32,10 @@ export const POST = async (request) => {
         const response = NextResponse.json(
             {
                 message: "Login successful",
-                email,
+                user: {
+                    email,
+                    token,
+                },
                 success: true,
             },
             { status: 200 }

@@ -1,6 +1,6 @@
-import Category from "@/models/category";
+import Category from "../helper/customCategories";
 
-export const createCustomCategories = async () => {
+export default async function createCustomCategories() {
     const category1 = new Category({
         name: "transportation",
         transactions: [],
@@ -54,3 +54,15 @@ export const createCustomCategories = async () => {
     category9.save();
     category10.save();
 };
+
+export const categories = [
+    "transportation",
+    "entertainment",
+    "food",
+    "health",
+    "self",
+    "groceries",
+    "bills",
+    "stationary",
+    "shopping",
+];

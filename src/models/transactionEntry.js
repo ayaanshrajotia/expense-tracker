@@ -14,14 +14,12 @@ const entrySchema = new mongoose.Schema({
     },
     paymentMode: {
         type: String,
+        required: true,
     },
     type: {
         type: String,
         enum: ["income", "expense", "savings"],
         required: true,
-    },
-    time: {
-        type: Date,
     },
     date: {
         type: Date,
