@@ -27,7 +27,7 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        // dispatch(fetchUser());
+        dispatch(fetchUser());
     }, []);
 
     const { user } = useSelector((state) => state.auth);
@@ -39,7 +39,7 @@ const Navbar = () => {
                     <Link href={"/"} className="font-bold text-lg">
                         Expense Tracker
                     </Link>
-                    {user !== null ? (
+                    {user ? (
                         <div className="flex gap-6">
                             <Link href={"/transactions"}>Transactions</Link>
                             <Link href={"/categories"}>Categories</Link>
@@ -48,7 +48,7 @@ const Navbar = () => {
                         <></>
                     )}
                 </div>
-                {user !== null ? (
+                {user ? (
                     <div className="flex gap-4 items-center">
                         <button className="relative h-9 w-9" type="button">
                             <Link href={"/dashboard"}>
