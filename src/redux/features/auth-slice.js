@@ -3,8 +3,14 @@ import { getCurrentUser, getUserLogout } from "../../services/authUser";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+let token = null;
+
+if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+}
+
 const initialState = {
-    user: null,
+    user: token ? token : null,
     isLoading: false,
     isError: false,
     isSuccess: false,
@@ -35,7 +41,6 @@ export const fetchUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await getCurrentUser();
-            console.log(response);
             return response;
         } catch (error) {
             const message =
@@ -64,9 +69,7 @@ export const authSlice = createSlice({
             state.isSuccess = false;
             state.message = "";
         },
-        logOut: (state) => {
-            state.user = null;
-        },
+        logOut: (state) => {},
     },
     extraReducers: (builder) => {
         builder
@@ -77,7 +80,7 @@ export const authSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.user = action.payload.data.user;
-                console.log(state.user);
+                localStorage.setItem("token", state.user.token);
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -96,7 +99,7 @@ export const authSlice = createSlice({
                 state.user = action.payload;
             })
             .addCase(logoutUser.fulfilled, (state) => {
-                console.log("user logout in redux");
+                localStorage.removeItem("token");
                 state.user = null;
             });
     },

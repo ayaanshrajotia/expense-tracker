@@ -5,9 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logOut, reset } from "../../redux/features/auth-slice";
-import { getUserLogout } from "../../services/authUser";
-import { useEffect } from "react";
+import { logOut, logoutUser, reset } from "../../redux/features/auth-slice";
 
 const Navbar = () => {
     const router = useRouter();
@@ -15,9 +13,7 @@ const Navbar = () => {
 
     const onLogout = async () => {
         try {
-            await getUserLogout();
-            router.push("/login");
-            dispatch(logOut());
+            dispatch(logoutUser());
             dispatch(reset());
             toast.success("Logout Successful");
         } catch (error) {
@@ -26,11 +22,8 @@ const Navbar = () => {
         }
     };
 
-    useEffect(() => {
-        dispatch(fetchUser());
-    }, []);
-
     const { user } = useSelector((state) => state.auth);
+    if (user === null) router.push("/login");
 
     return (
         <nav className="sticky top-0 border-b">
