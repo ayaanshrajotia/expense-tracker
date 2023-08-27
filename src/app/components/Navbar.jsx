@@ -27,7 +27,7 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchUser());
+        // dispatch(fetchUser());
     }, []);
 
     const { user } = useSelector((state) => state.auth);

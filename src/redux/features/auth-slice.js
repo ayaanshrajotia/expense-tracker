@@ -14,7 +14,6 @@ const initialState = {
 export const registerUser = createAsyncThunk(
     "registerUser",
     async (userData, { rejectWithValue }) => {
-        console.log("thunk worked");
         try {
             const response = await axios.post("/api/user/login", userData);
             toast.success("Login successful");
@@ -31,9 +30,23 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-export const fetchUser = createAsyncThunk("fetchUser", async () => {
-    return await getCurrentUser();
-});
+export const fetchUser = createAsyncThunk(
+    "fetchUser",
+    async (data, { rejectWithValue }) => {
+        try {
+            return await getCurrentUser();
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            console.log(error);
+            return rejectWithValue(message);
+        }
+    }
+);
 
 export const logoutUser = createAsyncThunk("logoutUser", async () => {
     return await getUserLogout();
