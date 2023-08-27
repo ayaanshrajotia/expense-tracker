@@ -16,6 +16,7 @@ const Navbar = () => {
             dispatch(logoutUser());
             dispatch(reset());
             toast.success("Logout Successful");
+            if (user === null) router.push("/login");
         } catch (error) {
             console.log(error.message);
             toast.error("Failed to log out");
@@ -23,7 +24,6 @@ const Navbar = () => {
     };
 
     const { user } = useSelector((state) => state.auth);
-    if (user === null) router.push("/login");
 
     return (
         <nav className="sticky top-0 border-b">
