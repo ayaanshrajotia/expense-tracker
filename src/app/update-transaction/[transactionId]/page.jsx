@@ -47,28 +47,6 @@ const page = ({ params }) => {
         }
     }, []);
 
-    const doUpdate = async (e) => {
-        e.preventDefault();
-        try {
-            dispatch(
-                updateTransaction({
-                    updatedTrans: updateTrans,
-                    id: params.transactionId,
-                })
-            );
-            toast.success("Successfully updated transaction");
-            setUpdateTrans({
-                remark: "",
-                amount: "",
-                type: "",
-                category: "",
-            });
-        } catch (error) {
-            console.log(error.message);
-            toast.error("Failed to create transaction");
-        }
-    };
-
     const doSave = async () => {
         try {
             dispatch(
@@ -89,10 +67,7 @@ const page = ({ params }) => {
         <div className="min-h-[90vh] flex justify-center items-center">
             {/* <UpdateForm trans={transaction} /> */}
             <div className="login w-[600px] p-8 rounded-md border">
-                <form
-                    className="flex flex-col items-center"
-                    onSubmit={doUpdate}
-                >
+                <form className="flex flex-col items-center" onSubmit={doSave}>
                     {/* Remark */}
                     <div className="relative z-0 w-full mb-7 group">
                         <input
@@ -361,17 +336,17 @@ const page = ({ params }) => {
                     {/* Buttons */}
                     <div className="flex justify-evenly w-full">
                         <button
-                            onClick={doSave}
-                            type="button"
+                            type="submit"
                             className="text-white bg-gray-700 mt-4 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2 text-center"
                         >
                             Update
                         </button>
                         <button
-                            type="submit"
+                            type="button"
+                            onClick={() => router.push("/transactions")}
                             className="text-white bg-gray-700 mt-4 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2 text-center"
                         >
-                            Save & Update New
+                            Cancel
                         </button>
                     </div>
                 </form>

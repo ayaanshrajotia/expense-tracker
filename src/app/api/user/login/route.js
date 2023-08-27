@@ -48,6 +48,6 @@ export const POST = async (request) => {
 
         return response;
     } catch (error) {
-        return getResponseMessage(`Login failed: ${error.message}`, false, 404);
+        return getResponseMessage(error.message, false, 500);
     }
 };

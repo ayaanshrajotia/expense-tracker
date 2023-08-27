@@ -37,7 +37,11 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    bank: {
+    upi: {
+        type: Number,
+        default: 0,
+    },
+    card: {
         type: Number,
         default: 0,
     },

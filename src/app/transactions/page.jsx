@@ -1,17 +1,11 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import TransactionContainer from "../components/TransactionContainer";
-import axios from "axios";
 import Link from "next/link";
-import { toast } from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    showTransactions,
-    deleteTransaction,
-} from "../../redux/features/transactions-slice";
+import { showTransactions } from "../../redux/features/transactions-slice";
 
 const Transactions = () => {
     const dispatch = useDispatch();
@@ -51,9 +45,9 @@ const Transactions = () => {
                     {isLoading ? (
                         <Skeleton count={5} className="" height={48} />
                     ) : (
-                        transactions?.map((transaction) => (
+                        transactions?.map((transaction, idx) => (
                             <TransactionContainer
-                                key={transaction._id}
+                                key={idx}
                                 id={transaction._id}
                                 remark={transaction.remark}
                                 amount={transaction.amount}

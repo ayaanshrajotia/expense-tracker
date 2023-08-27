@@ -29,7 +29,6 @@ const CreateForm = () => {
     const doCreate = async (e) => {
         e.preventDefault();
         try {
-            // const response = await axios.post("/api/transactions", transaction);
             dispatch(createTransactions(transaction));
             toast.success("Successfully created transaction");
             setTransaction({ remark: "", amount: "", type: "", category: "" });
@@ -41,7 +40,6 @@ const CreateForm = () => {
 
     const doSave = async () => {
         try {
-            // const response = await axios.post("/api/transactions", transaction);
             dispatch(createTransactions(transaction));
             toast.success("Successfully created transaction");
             router.push("/transactions");
@@ -164,7 +162,7 @@ const CreateForm = () => {
                                     id="horizontal-list-radio-id"
                                     type="radio"
                                     value="income"
-                                    name="list-radio"
+                                    name="type"
                                     className="w-4 h-4  bg-gray-100 border-gray-300 "
                                     onChange={(e) =>
                                         setTransaction({
@@ -187,7 +185,7 @@ const CreateForm = () => {
                                     id="horizontal-list-radio-millitary"
                                     type="radio"
                                     value="expense"
-                                    name="list-radio"
+                                    name="type"
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  "
                                     onChange={(e) =>
                                         setTransaction({
@@ -210,7 +208,7 @@ const CreateForm = () => {
                                     id="horizontal-list-radio-passport"
                                     type="radio"
                                     value="savings"
-                                    name="list-radio"
+                                    name="type"
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                                     onChange={(e) =>
                                         setTransaction({
@@ -218,7 +216,6 @@ const CreateForm = () => {
                                             type: e.target.value,
                                         })
                                     }
-                                    d
                                 />
                                 <label
                                     htmlFor="horizontal-list-radio-passport"
@@ -239,10 +236,10 @@ const CreateForm = () => {
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                             <div className="flex items-center pl-3">
                                 <input
-                                    id="horizontal-list-radio-id"
+                                    id="horizontal-list-radio-id1"
                                     type="radio"
                                     value="upi"
-                                    name="list-radio2"
+                                    name="paymentMode"
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                                     onChange={(e) =>
                                         setTransaction({
@@ -252,7 +249,7 @@ const CreateForm = () => {
                                     }
                                 />
                                 <label
-                                    htmlFor="horizontal-list-radio-id"
+                                    htmlFor="horizontal-list-radio-id1"
                                     className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
                                 >
                                     UPI
@@ -262,10 +259,10 @@ const CreateForm = () => {
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                             <div className="flex items-center pl-3">
                                 <input
-                                    id="horizontal-list-radio-millitary"
+                                    id="horizontal-list-radio-millitary1"
                                     type="radio"
                                     value="cash"
-                                    name="list-radio2"
+                                    name="paymentMode"
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                                     onChange={(e) =>
                                         setTransaction({
@@ -275,7 +272,7 @@ const CreateForm = () => {
                                     }
                                 />
                                 <label
-                                    htmlFor="horizontal-list-radio-millitary"
+                                    htmlFor="horizontal-list-radio-millitary1"
                                     className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
                                 >
                                     Cash
@@ -285,10 +282,10 @@ const CreateForm = () => {
                         <li className="w-full dark:border-gray-600">
                             <div className="flex items-center pl-3">
                                 <input
-                                    id="horizontal-list-radio-passport"
+                                    id="horizontal-list-radio-passport1"
                                     type="radio"
                                     value="card"
-                                    name="list-radio2"
+                                    name="paymentMode"
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                                     onChange={(e) =>
                                         setTransaction({
@@ -296,10 +293,9 @@ const CreateForm = () => {
                                             paymentMode: e.target.value,
                                         })
                                     }
-                                    d
                                 />
                                 <label
-                                    htmlFor="horizontal-list-radio-passport"
+                                    htmlFor="horizontal-list-radio-passport1"
                                     className="w-full py-3 ml-2 text-sm font-medium text-gray-900"
                                 >
                                     Card

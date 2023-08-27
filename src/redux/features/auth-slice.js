@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getCurrentUser, getUserLogout } from "../../services/authUser";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const initialState = {
     user: null,
@@ -12,10 +13,12 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
     "registerUser",
-    async (userData, thunkAPI) => {
+    async (userData, { rejectWithValue }) => {
         console.log("thunk worked");
         try {
-            return await axios.post("/api/user/login", userData);
+            const response = await axios.post("/api/user/login", userData);
+            toast.success("Login successful");
+            return response;
         } catch (error) {
             const message =
                 (error.response &&
@@ -23,7 +26,7 @@ export const registerUser = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            return thunkAPI.rejectWithValue(message);
+            return rejectWithValue(message);
         }
     }
 );

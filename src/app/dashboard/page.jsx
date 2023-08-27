@@ -28,10 +28,13 @@ const Dashboard = () => {
                         <span>balance: {user.balance}</span>
                         <span>income: {user.income}</span>
                         <span>expense: {user.expense}</span>
+                        <span>UPI: {user.upi}</span>
+                        <span>Cash: {user.cash}</span>
+                        <span>Card: {user.card}</span>
                     </div>
                 </div>
             )}
-            {JSON.stringify(user)}
+            {/* {JSON.stringify(user)} */}
         </div>
     );
 };

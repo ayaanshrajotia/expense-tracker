@@ -5,7 +5,6 @@ const initialState = {
     transactions: [],
     isLoading: false,
     isError: false,
-    message: "",
 };
 
 // fetch all transactions
@@ -13,9 +12,8 @@ export const showTransactions = createAsyncThunk(
     "showTransactions",
     async (data, { rejectWithValue }) => {
         try {
-            const response = axios.get("/api/transactions");
-
-            return (await response).data.message;
+            const response = await axios.get("/api/transactions");
+            return response.data.message;
         } catch (error) {
             return rejectWithValue(error);
         }
@@ -84,7 +82,6 @@ export const transactionsSlice = createSlice({
                 state.isLoading = false;
                 console.log(action.error.message);
                 state.isError = true;
-                state.message = action.payload;
             })
             .addCase(showTransactions.pending, (state) => {
                 state.isLoading = true;
@@ -96,7 +93,6 @@ export const transactionsSlice = createSlice({
             .addCase(showTransactions.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload;
             })
             .addCase(deleteTransaction.pending, (state) => {
                 state.isLoading = true;
@@ -114,7 +110,6 @@ export const transactionsSlice = createSlice({
             .addCase(deleteTransaction.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload;
             })
             .addCase(updateTransaction.pending, (state) => {
                 state.isLoading = true;
@@ -128,7 +123,6 @@ export const transactionsSlice = createSlice({
             .addCase(updateTransaction.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload;
             });
     },
 });

@@ -22,7 +22,10 @@ const Categories = () => {
     return (
         <div>
             {categories?.map((category) => (
-                <div key={category._id}>{category.name}</div>
+                <div key={category._id} className="flex my-4 ml-4 gap-4">
+                    <h1 className="text-xl">{category.name}</h1>
+                    <h2 className="text-lg">{category.spent}</h2>
+                </div>
             ))}
             {/* {categories} */}
         </div>
